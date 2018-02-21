@@ -1,0 +1,254 @@
+{
+	"info": {
+		"name": "CoffeeMeetsBagelsTests",
+		"_postman_id": "507698d6-59a1-b8e1-bb7e-d235d424e673",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Postman Tests with limit as parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4be57ded-4476-468f-b483-9fe218cf5ded",
+						"type": "text/javascript",
+						"exec": [
+							"//Check Value",
+							"pm.test(\"Check Value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    console.log(jsonData);  ",
+							"    jsonData[0].id===1;",
+							"});",
+							"",
+							"",
+							"//Check for gender string",
+							"pm.test(\"Body matches string Gender\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"gender\");",
+							"});",
+							"",
+							"//Check for status code 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//Check for response time less than 200ms",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"//Check for status string OK",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Allow \");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "bagel",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cmb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://cmb-bagels-api.herokuapp.com/bagels/?limit=3",
+					"protocol": "https",
+					"host": [
+						"cmb-bagels-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bagels",
+						""
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Postman Test with Post request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed1eb28e-d5d3-4e7f-ad7f-6c008c92b344",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "bagel",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cmb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Random Name\",\n    \"age\": 25,\n    \"gender\": \"m\"\n}"
+				},
+				"url": {
+					"raw": "https://cmb-bagels-api.herokuapp.com/bagels/",
+					"protocol": "https",
+					"host": [
+						"cmb-bagels-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bagels",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Postman Tests with Distance and Origin Parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d9dea38-c4f5-48f5-9959-bb725906f38a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Check Value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    console.log(jsonData);  ",
+							"    jsonData[0].id===13;",
+							"});",
+							"",
+							"pm.test(\"Body matches string Gender\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"gender\");",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"",
+							"pm.globals.set(\"GLobal_Name\", \"global\");",
+							"",
+							"",
+							"",
+							"pm.globals.get(\"GLobal_Name\");",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "bagel",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "cmb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://cmb-bagels-api.herokuapp.com/bagels/?dist=100&origin=37.8044,-122.2711",
+					"protocol": "https",
+					"host": [
+						"cmb-bagels-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bagels",
+						""
+					],
+					"query": [
+						{
+							"key": "dist",
+							"value": "100",
+							"equals": true
+						},
+						{
+							"key": "origin",
+							"value": "37.8044,-122.2711",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
